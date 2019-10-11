@@ -3,6 +3,7 @@ const express = require('express');
 const massive = require('massive');
 const app = express();
 const {SERVER_PORT, CONNECTION_STRING} = process.env
+const ctrl = require('./controller');
 
 app.use(express.json())
 
@@ -13,3 +14,5 @@ massive(CONNECTION_STRING)
         console.log("db connected... pause.. right there!..... enhance")
     })
     .catch(err => {console.log(err)});
+
+    app.get('/api/comments', ctrl.getComments)
